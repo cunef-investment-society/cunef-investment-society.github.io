@@ -50,18 +50,61 @@
    ------------------------------------------------------------------------------
    These appear at the bottom of the page, in the navy band.
 
-   TO ADD ONE:     copy a whole line below, paste it underneath, change the text.
-   TO REMOVE ONE:  delete its whole line.
-   Keep the comma at the end of every line except the last one.
+   TO ADD SOMEONE:  copy a whole { ... } block below, paste it underneath,
+                    change the fields. Keep the comma after the closing brace.
+   TO REMOVE:       delete their whole { ... } block.
 
-     role   the small grey caption above the address — who to write to, and why
-     email  the address itself
+     name      the person's name, shown in bold
+     role      the small grey line under the name — position and year
+     email      their address. Required.
+     linkedin  full profile URL. Leave as "" and no LinkedIn link appears.
+     photo     a picture you have uploaded to the assets folder, e.g.
+               "assets/manuel-barrios.jpg". Leave as "" and their initials
+               show in a circle instead, which looks fine.
+
+   ABOUT PHOTOS: you cannot link directly to a picture on LinkedIn — those
+   addresses expire and the photo would break within weeks. Save the image,
+   rename it lowercase with hyphens, upload it to the assets folder in this
+   repository, then write assets/thatfilename here. Square images work best;
+   anything around 400x400 pixels is plenty.
 --------------------------------------------------------------------------------*/
 
 const CONTACTS = [
-  { role: "Co-Head of the CIS -- 4th year ADECD", email: "manuel.barrios@cunef.edu" },
-  { role: "Co-Head of the CIS -- 4th year PPE", email: "federico.fraile@cunef.edu" },
-  { role: "Join our WhatsApp community", link: "https://chat.whatsapp.com/Lu2AMARbpTS22FLEDsIA4v?mode=gi_t" }
+
+  { name:     "Manuel Barrios",
+    role:     "Co-Head — 4th year ADECD",
+    email:    "manuel.barrios@cunef.edu",
+    linkedin: "https://www.linkedin.com/in/manuel-barrios-perez",
+    photo:    "assets/manuel-barrios.JPG" },
+
+  { name:     "Federico Fraile",
+    role:     "Co-Head — 4th year PPE",
+    email:    "federico.fraile@cunef.edu",
+    linkedin: "https://www.linkedin.com/in/federicofraile/",
+    photo:    "assets/federico-fraile.JPG" }
+
+];
+
+
+/* ------------------------------------------------------------------------------
+   1.2  JOIN LINKS
+   ------------------------------------------------------------------------------
+   Buttons in the navy band at the bottom — the ways someone joins or follows
+   the society. The WhatsApp community, an application form, Instagram, etc.
+
+   TO ADD ONE:     copy a whole line, paste underneath, change the two fields.
+   TO REMOVE ONE:  delete its whole line.
+   TO HAVE NONE:   leave the list empty, like this:  const JOIN_LINKS = [];
+
+     label  the words on the button
+     url    the full web address, starting with https://
+
+   The first button is orange, the rest are outlined. So put the one you most
+   want people to click first.
+--------------------------------------------------------------------------------*/
+
+const JOIN_LINKS = [
+  { label: "Join the WhatsApp community", url: "https://chat.whatsapp.com/Lu2AMARbpTS22FLEDsIA4v?mode=gi_t" }
 ];
 
 
@@ -388,10 +431,20 @@ a.row:hover .row-title{color:var(--orange)}
 .join{background:var(--navy);color:var(--on-navy);padding:clamp(3.5rem,7vw,5.5rem) 0}
 .join h2{color:var(--white);font-size:clamp(1.85rem,4vw,2.7rem);font-weight:300;max-width:20ch}
 .join p{margin-top:1.15rem;max-width:52ch}
-.contacts{display:flex;flex-wrap:wrap;gap:2.75rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--rule-navy)}
-.contact .role{font-size:.8rem;color:var(--on-navy);margin-bottom:.4rem}
-.contact a{color:var(--white);text-decoration:none;border-bottom:1.5px solid var(--orange);font-weight:600;font-size:1rem}
-.contact a:hover{color:var(--orange)}
+.join-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.contacts{display:flex;flex-wrap:wrap;gap:3rem;margin-top:2.5rem;padding-top:2.25rem;border-top:1px solid var(--rule-navy)}
+.contact{display:flex;gap:1rem;align-items:flex-start}
+.contact .avatar{
+  width:60px;height:60px;flex:0 0 60px;border-radius:50%;overflow:hidden;
+  background:rgba(255,255,255,.10);display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1.25rem;color:var(--white);
+}
+.contact .avatar img{width:100%;height:100%;object-fit:cover}
+.contact .name{color:var(--white);font-weight:600;font-size:1rem;line-height:1.3}
+.contact .role{font-size:.8rem;color:var(--on-navy);margin-top:.15rem}
+.contact .links{margin-top:.6rem;display:flex;flex-direction:column;gap:.25rem;align-items:flex-start}
+.contact .links a{color:var(--white);text-decoration:none;border-bottom:1.5px solid var(--orange);font-size:.9rem}
+.contact .links a:hover{color:var(--orange)}
 
 footer{padding:2.5rem 0;border-top:1px solid var(--rule-soft);font-size:.82rem;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
@@ -623,6 +676,7 @@ footer img{height:26px;width:auto}
     <div class="wrap">
       <h2>Join the society</h2>
       <p>Membership is open to every CUNEF student, from first year onwards. Write to us and we will add you to the mailing list for talks, visits, workshops and application deadlines.</p>
+      <div class="join-links" id="join-links"></div>
       <div class="contacts" id="contacts"></div>
     </div>
   </section>
@@ -646,21 +700,66 @@ footer img{height:26px;width:auto}
    ============================================================================ */
 (function () {
 
+  /* --- join links --- */
+  const linkBox = document.getElementById('join-links');
+  JOIN_LINKS.filter(l => l.url).forEach((l, i) => {
+    const a = document.createElement('a');
+    a.className = 'btn ' + (i === 0 ? 'btn-primary' : 'btn-ghost');
+    a.href = l.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = l.label;
+    linkBox.appendChild(a);
+  });
+
   /* --- contacts --- */
   const contactBox = document.getElementById('contacts');
   CONTACTS.forEach(c => {
     const wrap = document.createElement('div');
     wrap.className = 'contact';
 
+    const initials = c.name.split(' ').map(w => w[0]).join('').slice(0, 2);
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar';
+    if (c.photo) {
+      const img = document.createElement('img');
+      img.src = c.photo;
+      img.alt = c.name;
+      img.onerror = () => { avatar.textContent = initials; };
+      avatar.appendChild(img);
+    } else {
+      avatar.textContent = initials;
+    }
+
+    const info = document.createElement('div');
+
+    const name = document.createElement('div');
+    name.className = 'name';
+    name.textContent = c.name;
+
     const role = document.createElement('div');
     role.className = 'role';
     role.textContent = c.role;
 
-    const link = document.createElement('a');
-    link.href = 'mailto:' + c.email;
-    link.textContent = c.email;
+    const links = document.createElement('div');
+    links.className = 'links';
 
-    wrap.append(role, link);
+    const mail = document.createElement('a');
+    mail.href = 'mailto:' + c.email;
+    mail.textContent = c.email;
+    links.appendChild(mail);
+
+    if (c.linkedin) {
+      const li = document.createElement('a');
+      li.href = c.linkedin;
+      li.target = '_blank';
+      li.rel = 'noopener';
+      li.textContent = 'LinkedIn';
+      links.appendChild(li);
+    }
+
+    info.append(name, role, links);
+    wrap.append(avatar, info);
     contactBox.appendChild(wrap);
   });
 
