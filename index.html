@@ -17,7 +17,7 @@ Index · HTML
      X-Frame-Options) can only be set as a real HTTP header, which GitHub Pages
      does not allow, so it is not included here rather than added as a tag the
      browser would ignore. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'none'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="assets/monogram.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,13 +89,13 @@ const CONTACTS = [
     role:     "Co-Head — 4th year ADECD",
     email:    "manuel.barrios@cunef.edu",
     linkedin: "https://www.linkedin.com/in/manuel-barrios-perez",
-    photo:    "assets/manuel-barrios.JPG" },
+    photo:    "assets/manuel-barrios.jpg" },
  
   { name:     "Federico Fraile",
     role:     "Co-Head — 4th year PPE",
     email:    "federico.fraile@cunef.edu",
-    linkedin: "https://www.linkedin.com/in/federicofraile/",
-    photo:    "assets/federico-fraile.JPG" }
+    linkedin: "",
+    photo:    "" }
  
 ];
  
@@ -118,7 +118,8 @@ const CONTACTS = [
 --------------------------------------------------------------------------------*/
  
 const JOIN_LINKS = [
-  { label: "Join the WhatsApp community", url: "https://chat.whatsapp.com/Lu2AMARbpTS22FLEDsIA4v?mode=gi_t" }
+  { label: "Join the WhatsApp community", url: "https://chat.whatsapp.com/PASTE-YOURS-HERE" },
+  { label: "Follow us on LinkedIn",       url: "" }
 ];
  
  
