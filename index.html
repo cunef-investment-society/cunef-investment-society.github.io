@@ -4,79 +4,262 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CUNEF Investment Society</title>
-<meta name="description" content="Resources, guides and events for members of the CUNEF Investment Society — the oldest and largest student society at CUNEF Universidad.">
+<meta name="description" content="Resources, guides and events for members of the CUNEF Investment Society.">
 <link rel="icon" href="assets/monogram.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- =========================================================================
-     EDIT YOUR RESOURCES HERE — this is the only block you need to touch.
-     Leave "url" as "" and the item shows as "Coming soon" instead of breaking.
-     Paste the sharing link from SharePoint/OneDrive into "url".
-     ========================================================================= -->
+<!--
+================================================================================
+  HOW THIS FILE IS ORGANISED
+================================================================================
+
+  Four parts, in this order:
+
+    PART 1  SETTINGS      <- almost everything you'll ever change is here
+    PART 2  APPEARANCE    <- colours, fonts, spacing. Only for restyling.
+    PART 3  PAGE TEXT     <- the written content of each section
+    PART 4  MACHINERY     <- makes the lists work. Never edit.
+
+  Use Find (Cmd+F) and search for "PART 1", "PART 3" etc. to jump straight there.
+
+  THREE RULES THAT PREVENT ALMOST EVERY BREAKAGE:
+
+    1. Text always sits inside "double quotes".
+    2. Every item in a list ends with a comma.
+    3. Never delete a { } or [ ] bracket. They come in pairs.
+
+  If the site ever goes blank: in GitHub open this file, click History, find the
+  last version that worked, and restore it. Nothing is ever lost.
+
+================================================================================
+-->
+
+
 <script>
+/* ==============================================================================
+   PART 1 — SETTINGS
+   ==============================================================================
+   Everything in this block is yours to change. None of it is technical.
+   ============================================================================ */
+
+
+/* ------------------------------------------------------------------------------
+   1.1  CONTACT EMAILS
+   ------------------------------------------------------------------------------
+   These appear at the bottom of the page, in the navy band.
+
+   TO ADD ONE:     copy a whole line below, paste it underneath, change the text.
+   TO REMOVE ONE:  delete its whole line.
+   Keep the comma at the end of every line except the last one.
+
+     role   the small grey caption above the address — who to write to, and why
+     email  the address itself
+--------------------------------------------------------------------------------*/
+
+const CONTACTS = [
+  { role: "Membership and general enquiries", email: "manuel.barrios@cunef.edu" },
+  { role: "Investment Banking Division",      email: "manuel.barrios@cunef.edu" }
+];
+
+
+/* ------------------------------------------------------------------------------
+   1.2  RESOURCES
+   ------------------------------------------------------------------------------
+   The document list in the middle of the page.
+
+   The list is split into GROUPS. Each group has a heading, a line of intro text,
+   and its own ITEMS. Each item is one row members can click.
+
+   EVERY ITEM HAS FIVE FIELDS:
+
+     title   the name, shown in bold
+     type    the small label on the left: PDF, DOCX, XLSX, PPTX or LINK
+     meta    small grey text on the right — a detail, not a sentence
+     desc    one line on what it is and why they'd want it
+     url     where the file lives (see below)
+
+   WHAT GOES IN url:
+
+     ""                          leave empty and the row shows as grey
+                                 "Coming soon" and can't be clicked. Safe.
+                                 Use for documents you haven't written yet.
+
+     "docs/cv-template.pdf"      a file you uploaded to the docs folder in this
+                                 repository. Write docs/ then the filename
+                                 exactly as it appears there, lowercase.
+
+     "https://forms.gle/abc123"  anything else on the web — a form, a site.
+
+   TO ADD A ROW:    copy an existing item block, paste below it, edit the fields.
+   TO ADD A GROUP:  copy from one "{ group:" down to its matching "}," and paste.
+                    The filter buttons update themselves.
+--------------------------------------------------------------------------------*/
+
 const RESOURCES = [
+
+  /* ===== GROUP: Applications ============================================== */
   {
     group: "Applications",
     blurb: "The documents you send. Use these formats exactly — they match what analysts and HR screeners expect.",
     items: [
-      { title: "CV template",              type: "DOCX", meta: "Investment banking format", desc: "One page, reverse chronological, the layout used across European IB recruiting.", url: "docs/cv_template.docx" },
-      { title: "CV template",              type: "PDF",  meta: "Read-only preview",         desc: "Check your formatting against the reference version before you submit.", url: "" },
-      { title: "Cover letter template",    type: "DOCX", meta: "With annotated guidance",    desc: "Structure, tone and the three paragraphs that actually get read.", url: "" },
-      { title: "Worked CV example",        type: "PDF",  meta: "First year, no experience",  desc: "What a competitive CV looks like before your first internship.", url: "" }
+
+      { title: "CV template",
+        type:  "DOCX",
+        meta:  "Investment banking format",
+        desc:  "One page, reverse chronological, the layout used across European IB recruiting.",
+        url:   "docs/cv_template.docx" },
+
+      { title: "CV template",
+        type:  "PDF",
+        meta:  "Read-only preview",
+        desc:  "Check your formatting against the reference version before you submit.",
+        url:   "" },
+
+      { title: "Cover letter template",
+        type:  "DOCX",
+        meta:  "With annotated guidance",
+        desc:  "Structure, tone and the three paragraphs that actually get read.",
+        url:   "" },
+
+      { title: "Worked CV example",
+        type:  "PDF",
+        meta:  "First year, no experience",
+        desc:  "What a competitive CV looks like before your first internship.",
+        url:   "" }
+
     ]
   },
+
+  /* ===== GROUP: Technical preparation ===================================== */
   {
     group: "Technical preparation",
     blurb: "Interview material. Work through these in order — accounting first, valuation second, modelling last.",
     items: [
-      { title: "Accounting fundamentals",       type: "PDF",  meta: "The three statements", desc: "How the statements link, and the questions built on that link.", url: "" },
-      { title: "Valuation guide",               type: "PDF",  meta: "DCF, comps, precedents", desc: "The three core methodologies and when each one is defensible.", url: "" },
-      { title: "M&A and LBO primer",            type: "PDF",  meta: "Deal mechanics",       desc: "Accretion/dilution, sources and uses, returns drivers.", url: "" },
-      { title: "Technical question bank",       type: "PDF",  meta: "400+ questions",        desc: "Asked in real Spring Week and summer analyst interviews.", url: "" },
-      { title: "Financial modelling workbook",  type: "XLSX", meta: "Build from blank",      desc: "A three-statement model you build yourself, with the answer tab locked at the end.", url: "" }
+
+      { title: "Accounting fundamentals",
+        type:  "PDF",
+        meta:  "The three statements",
+        desc:  "How the statements link, and the questions built on that link.",
+        url:   "" },
+
+      { title: "Valuation guide",
+        type:  "PDF",
+        meta:  "DCF, comps, precedents",
+        desc:  "The three core methodologies and when each one is defensible.",
+        url:   "" },
+
+      { title: "M&A and LBO primer",
+        type:  "PDF",
+        meta:  "Deal mechanics",
+        desc:  "Accretion/dilution, sources and uses, returns drivers.",
+        url:   "" },
+
+      { title: "Technical question bank",
+        type:  "PDF",
+        meta:  "Asked in real interviews",
+        desc:  "Questions members were asked in Spring Week and summer analyst processes.",
+        url:   "" },
+
+      { title: "Financial modelling workbook",
+        type:  "XLSX",
+        meta:  "Build from blank",
+        desc:  "A three-statement model you build yourself, with the answer tab at the end.",
+        url:   "" }
+
     ]
   },
+
+  /* ===== GROUP: The society =============================================== */
   {
     group: "The society",
     blurb: "Who we are and what runs this term.",
     items: [
-      { title: "Welcome Day presentation",   type: "PDF",  meta: "September 2026",  desc: "Investment Banking Division — the full deck presented at Welcome Day.", url: "" },
-      { title: "Term calendar",              type: "PDF",  meta: "Talks and visits", desc: "Speaker sessions, office visits, workshops and competition dates.", url: "" },
-      { title: "Membership form",            type: "LINK", meta: "Opens a form",     desc: "Join the society and get added to the mailing list.", url: "" }
+
+      { title: "Welcome Day presentation",
+        type:  "PDF",
+        meta:  "September 2026",
+        desc:  "Investment Banking Division — the full deck presented at Welcome Day.",
+        url:   "" },
+
+      { title: "Term calendar",
+        type:  "PDF",
+        meta:  "Talks and visits",
+        desc:  "Speaker sessions, office visits, workshops and competition dates.",
+        url:   "" },
+
+      { title: "Membership form",
+        type:  "LINK",
+        meta:  "Opens a form",
+        desc:  "Join the society and get added to the mailing list.",
+        url:   "" }
+
     ]
   },
+
+  /* ===== GROUP: Process and timing ======================================== */
   {
     group: "Process and timing",
     blurb: "Recruiting runs a year ahead of where most students think it does.",
     items: [
-      { title: "Spring Week application tracker", type: "XLSX", meta: "Deadlines by firm", desc: "Every open Spring Week, its deadline, and where you are in each process.", url: "" },
-      { title: "Networking and outreach guide",   type: "PDF",  meta: "Email templates",   desc: "How to reach alumni, what to ask, and what never to send.", url: "" },
-      { title: "Course and exchange guidance",    type: "PDF",  meta: "CUNEF-specific",    desc: "Which electives, grades and exchange destinations carry weight in applications.", url: "" }
+
+      { title: "Spring Week application tracker",
+        type:  "XLSX",
+        meta:  "Deadlines by firm",
+        desc:  "Every open Spring Week, its deadline, and where you are in each process.",
+        url:   "" },
+
+      { title: "Networking and outreach guide",
+        type:  "PDF",
+        meta:  "Email templates",
+        desc:  "How to reach alumni, what to ask, and what never to send.",
+        url:   "" },
+
+      { title: "Course and exchange guidance",
+        type:  "PDF",
+        meta:  "CUNEF-specific",
+        desc:  "Which electives, grades and exchange destinations carry weight in applications.",
+        url:   "" }
+
     ]
   }
+
 ];
 
-const CONTACT_EMAIL = "manuel.barrios@cunef.edu";
+/* ===== END OF PART 1 — nothing below is needed for normal updates ========== */
 </script>
 
+
 <style>
+/* ==============================================================================
+   PART 2 — APPEARANCE
+   ==============================================================================
+   Colours, fonts, spacing. You only come here to restyle the site.
+   The colour block immediately below is the one thing worth knowing about.
+   ============================================================================ */
+
 :root{
-  --orange:#ff5700;
-  --navy:#1a1f6c;
-  --beige:#d6d1c4;
-  --beige-light:#f0ece8;
+  /* --- Brand colours. Change a hex code and it updates across the whole site. */
+  --orange:#ff5700;        /* CUNEF orange: buttons, accent rules, step numbers */
+  --navy:#1a1f6c;          /* CUNEF blue: opening section and contact band      */
+  --beige:#d6d1c4;         /* bullet points                                     */
+  --beige-light:#f0ece8;   /* background of alternating sections                */
   --white:#ffffff;
   --black:#000000;
+
+  /* --- Greys derived from the above. Leave alone. --- */
   --body:rgba(0,0,0,.74);
   --muted:rgba(0,0,0,.50);
   --rule:rgba(0,0,0,.13);
   --rule-soft:rgba(0,0,0,.07);
   --on-navy:rgba(255,255,255,.76);
   --rule-navy:rgba(255,255,255,.20);
+
+  /* --- Fonts: Newsreader for headings, Manrope for body text. --- */
   --serif:"Newsreader",Georgia,"Times New Roman",serif;
   --sans:"Manrope",Arial,Helvetica,sans-serif;
+
   --pad:clamp(1.25rem,5vw,4.5rem);
   --maxw:1180px;
 }
@@ -100,11 +283,8 @@ img{max-width:100%;display:block}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
 
-/* ---------- header ---------- */
-.masthead{
-  position:sticky;top:0;z-index:50;background:var(--white);
-  border-bottom:1px solid var(--rule-soft);
-}
+/* --- top bar with logo and menu --- */
+.masthead{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid var(--rule-soft)}
 .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;min-height:78px}
 .logo img{height:34px;width:auto}
 .nav{display:flex;align-items:center;gap:2rem;font-size:.875rem;font-weight:500}
@@ -112,28 +292,20 @@ img{max-width:100%;display:block}
 .nav a:hover{color:var(--black);border-bottom-color:var(--orange)}
 @media (max-width:820px){.nav{display:none}.masthead .wrap{min-height:66px}.logo img{height:28px}}
 
-/* ---------- hero ---------- */
+/* --- navy opening section --- */
 .hero{background:var(--navy);color:var(--on-navy);padding:clamp(3.5rem,9vw,7rem) 0 0}
-.hero h1{
-  color:var(--white);font-size:clamp(2.3rem,6.2vw,4.35rem);line-height:1.06;
-  max-width:17ch;font-weight:300;
-}
+.hero h1{color:var(--white);font-size:clamp(2.3rem,6.2vw,4.35rem);line-height:1.06;max-width:17ch;font-weight:300}
 .hero .lede{margin-top:1.6rem;max-width:56ch;font-size:clamp(1rem,1.6vw,1.115rem);line-height:1.66}
 .hero .rule{width:76px;height:3px;background:var(--orange);margin-bottom:2.1rem}
 .actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.4rem}
-.btn{
-  display:inline-block;font-family:var(--sans);font-size:.9rem;font-weight:600;
-  padding:.85rem 1.6rem;text-decoration:none;border:1.5px solid transparent;transition:background .15s,color .15s,border-color .15s;
-}
+.btn{display:inline-block;font-family:var(--sans);font-size:.9rem;font-weight:600;padding:.85rem 1.6rem;text-decoration:none;border:1.5px solid transparent;transition:background .15s,color .15s,border-color .15s}
 .btn-primary{background:var(--orange);color:var(--white)}
 .btn-primary:hover{background:var(--white);color:var(--navy)}
 .btn-ghost{border-color:var(--rule-navy);color:var(--white)}
 .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
 
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-top:1px solid var(--rule-navy);margin-top:clamp(3rem,6vw,4.75rem);
-}
+/* --- the three figures --- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule-navy);margin-top:clamp(3rem,6vw,4.75rem)}
 .stat{padding:1.8rem 1.75rem 2rem 0}
 .stat + .stat{border-left:1px solid var(--rule-navy);padding-left:1.75rem}
 .stat b{display:block;font-family:var(--serif);font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:400;color:var(--white);line-height:1.1}
@@ -144,7 +316,7 @@ img{max-width:100%;display:block}
   .stat + .stat{border-left:0;border-top:1px solid var(--rule-navy);padding-left:0}
 }
 
-/* ---------- generic section ---------- */
+/* --- shared section spacing --- */
 section{scroll-margin-top:90px}
 .band{padding:clamp(3.75rem,8vw,6.5rem) 0}
 .band-beige{background:var(--beige-light)}
@@ -152,23 +324,13 @@ section{scroll-margin-top:90px}
 .head h2{font-size:clamp(1.85rem,4vw,2.9rem);line-height:1.14;font-weight:400}
 .head p{margin-top:1rem;font-size:1.03rem;max-width:58ch}
 
-/* ---------- resources ---------- */
-.toolbar{
-  display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;
-  padding-bottom:1.1rem;border-bottom:1px solid var(--rule);margin-bottom:.5rem;
-}
+/* --- resource list --- */
+.toolbar{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;padding-bottom:1.1rem;border-bottom:1px solid var(--rule);margin-bottom:.5rem}
 .chips{display:flex;flex-wrap:wrap;gap:.4rem}
-.chip{
-  font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
-  background:transparent;border:1px solid var(--rule);color:var(--body);
-  padding:.42rem .9rem;transition:background .15s,color .15s,border-color .15s;
-}
+.chip{font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--rule);color:var(--body);padding:.42rem .9rem;transition:background .15s,color .15s,border-color .15s}
 .chip:hover{border-color:var(--black);color:var(--black)}
 .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:var(--white)}
-.search{
-  font:inherit;font-size:.875rem;padding:.55rem .85rem;min-width:220px;flex:0 1 260px;
-  border:1px solid var(--rule);background:var(--white);color:var(--black);
-}
+.search{font:inherit;font-size:.875rem;padding:.55rem .85rem;min-width:220px;flex:0 1 260px;border:1px solid var(--rule);background:var(--white);color:var(--black)}
 .search::placeholder{color:var(--muted)}
 
 .group{padding-top:2.6rem}
@@ -176,17 +338,11 @@ section{scroll-margin-top:90px}
 .group-head h3{font-size:1.42rem;font-weight:400}
 .group-head p{margin-top:.4rem;font-size:.92rem;max-width:62ch;color:var(--muted)}
 
-.row{
-  display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:baseline;
-  padding:1.15rem 0;border-bottom:1px solid var(--rule-soft);text-decoration:none;color:inherit;
-}
+.row{display:grid;grid-template-columns:64px 1fr auto;gap:1.25rem;align-items:baseline;padding:1.15rem 0;border-bottom:1px solid var(--rule-soft);text-decoration:none;color:inherit}
 .row:first-of-type{border-top:1px solid var(--rule);margin-top:1.25rem}
 a.row:hover{background:rgba(255,87,0,.045)}
 a.row:hover .row-title{color:var(--orange)}
-.tag{
-  font-size:.66rem;font-weight:700;letter-spacing:.06em;color:var(--navy);
-  border:1px solid var(--rule);padding:.24rem 0;text-align:center;
-}
+.tag{font-size:.66rem;font-weight:700;letter-spacing:.06em;color:var(--navy);border:1px solid var(--rule);padding:.24rem 0;text-align:center}
 .row-title{font-weight:600;color:var(--black);font-size:1.01rem;transition:color .15s}
 .row-desc{margin-top:.2rem;font-size:.9rem;color:var(--muted);max-width:64ch}
 .row-meta{font-size:.8rem;color:var(--muted);white-space:nowrap;text-align:right}
@@ -199,7 +355,7 @@ a.row:hover .row-title{color:var(--orange)}
 }
 .empty{padding:3rem 0;color:var(--muted);font-size:.95rem}
 
-/* ---------- path ---------- */
+/* --- the three numbered steps --- */
 .path{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule)}
 .step{padding:2rem 2rem 2.25rem 0}
 .step + .step{border-left:1px solid var(--rule);padding-left:2rem}
@@ -213,7 +369,7 @@ a.row:hover .row-title{color:var(--orange)}
   .step + .step{border-left:0;border-top:1px solid var(--rule);padding-left:0}
 }
 
-/* ---------- pillars ---------- */
+/* --- Learn / Prepare / Connect --- */
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.75rem,4vw,3.25rem)}
 .pillar h3{font-size:1.35rem;font-weight:400;padding-bottom:.85rem;border-bottom:2px solid var(--orange);display:inline-block}
 .pillar ul{list-style:none;margin:1.35rem 0 0;padding:0}
@@ -221,30 +377,54 @@ a.row:hover .row-title{color:var(--orange)}
 .pillar li::before{content:"";position:absolute;left:0;top:.65em;width:5px;height:5px;background:var(--beige);border-radius:50%}
 @media (max-width:840px){.pillars{grid-template-columns:1fr}}
 
-/* ---------- firms ---------- */
+/* --- firm name boxes --- */
 .firm-block + .firm-block{margin-top:2.75rem}
 .firm-block h3{font-size:1.08rem;font-weight:500;font-family:var(--sans);letter-spacing:0;color:var(--navy)}
 .firms{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
-.firm{
-  font-family:var(--serif);font-size:1.02rem;color:var(--black);
-  background:var(--white);border:1px solid var(--rule-soft);padding:.7rem 1.15rem;
-}
+.firm{font-family:var(--serif);font-size:1.02rem;color:var(--black);background:var(--white);border:1px solid var(--rule-soft);padding:.7rem 1.15rem}
 
-/* ---------- join ---------- */
+/* --- navy contact band --- */
 .join{background:var(--navy);color:var(--on-navy);padding:clamp(3.5rem,7vw,5.5rem) 0}
 .join h2{color:var(--white);font-size:clamp(1.85rem,4vw,2.7rem);font-weight:300;max-width:20ch}
 .join p{margin-top:1.15rem;max-width:52ch}
-.join a.mail{color:var(--white);text-decoration:none;border-bottom:1.5px solid var(--orange);font-weight:600}
-.join a.mail:hover{color:var(--orange)}
+.contacts{display:flex;flex-wrap:wrap;gap:2.75rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--rule-navy)}
+.contact .role{font-size:.8rem;color:var(--on-navy);margin-bottom:.4rem}
+.contact a{color:var(--white);text-decoration:none;border-bottom:1.5px solid var(--orange);font-weight:600;font-size:1rem}
+.contact a:hover{color:var(--orange)}
 
-/* ---------- footer ---------- */
 footer{padding:2.5rem 0;border-top:1px solid var(--rule-soft);font-size:.82rem;color:var(--muted)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
 footer img{height:26px;width:auto}
 </style>
 </head>
+
 <body>
 
+<!-- ==============================================================================
+     PART 3 — PAGE TEXT
+     ==============================================================================
+     The written content. To change wording, type over the text that sits
+     BETWEEN the angle-bracket tags:
+
+         <h3>Spring Week</h3>
+             ^^^^^^^^^^^  change this; leave <h3> and </h3> alone.
+
+     Sections below appear in the same order as on the live page:
+       3.1  top bar and menu
+       3.2  navy opening section
+       3.3  resources heading    (the list comes from PART 1)
+       3.4  the three steps
+       3.5  Learn / Prepare / Connect
+       3.6  firms
+       3.7  contact band         (the addresses come from PART 1)
+     ============================================================================ -->
+
+
+<!-- ===== 3.1  TOP BAR AND MENU =================================================
+     Each link's href="#something" must match the id="something" of a section
+     below. To rename an item, change only the words between > and </a>.
+     To remove one, delete its whole <a ...>...</a> line.
+============================================================================== -->
 <header class="masthead">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="CUNEF Investment Society — home">
@@ -262,15 +442,27 @@ footer img{height:26px;width:auto}
 
 <main id="top">
 
+  <!-- ===== 3.2  NAVY OPENING SECTION ==========================================
+       <h1>     the large headline
+       .lede    the paragraph under it
+       .btn     the two buttons
+       .stat    the three figures: <b> is the number, <span> the caption.
+                Delete a whole <div class="stat">...</div> to go down to two —
+                the row re-spaces itself.
+  ========================================================================== -->
   <section class="hero">
     <div class="wrap">
       <div class="rule"></div>
+
       <h1>The same rigour as any target school.</h1>
+
       <p class="lede">The CUNEF Investment Society is the oldest and largest student society at CUNEF Universidad. We exist because the talent here matches any university in Europe — and the preparation should match it too. Everything we teach is open to members below.</p>
+
       <div class="actions">
         <a class="btn btn-primary" href="#resources">Browse resources</a>
         <a class="btn btn-ghost" href="#join">Join the society</a>
       </div>
+
       <div class="stats">
         <div class="stat"><b>800+</b><span>Students and alumni enrolled in the society</span></div>
         <div class="stat"><b>Analyst to MD</b><span>Alumni seniority at leading firms on both sides of the Atlantic</span></div>
@@ -279,6 +471,12 @@ footer img{height:26px;width:auto}
     </div>
   </section>
 
+
+  <!-- ===== 3.3  RESOURCES =====================================================
+       Only the heading and intro paragraph are here.
+       The documents come from PART 1, section 1.2.
+       The two empty divs fill in automatically — leave them exactly as they are.
+  ========================================================================== -->
   <section class="band" id="resources">
     <div class="wrap">
       <div class="head">
@@ -288,7 +486,7 @@ footer img{height:26px;width:auto}
 
       <div class="toolbar">
         <div class="chips" id="chips" role="group" aria-label="Filter resources by area"></div>
-        <label for="search" class="sr-only" style="position:absolute;left:-9999px">Search resources</label>
+        <label for="search" style="position:absolute;left:-9999px">Search resources</label>
         <input class="search" id="search" type="search" placeholder="Search resources" autocomplete="off">
       </div>
 
@@ -296,40 +494,62 @@ footer img{height:26px;width:auto}
     </div>
   </section>
 
+
+  <!-- ===== 3.4  THE THREE STEPS ===============================================
+       Each step is one <div class="step"> containing:
+         .step-n  the orange number
+         <h3>     the stage name
+         .when    the timing line, in navy
+         <p>      the explanation
+       To add a fourth, copy a whole <div class="step">...</div> block.
+  ========================================================================== -->
   <section class="band band-beige" id="path">
     <div class="wrap">
       <div class="head">
         <h2>The path to investment banking begins in first year</h2>
         <p>Spring Week applications open in September of your second year. By then your CV must already be competitive, which is the result of work you did the year before. CUNEF gives you the platform; we teach you how to use it.</p>
       </div>
+
       <div class="path">
+
         <div class="step">
           <div class="step-n">1</div>
           <h3>Spring Week</h3>
           <div class="when">Second to third year — apply in September</div>
           <p>A week inside the bank. Performing well here fast-tracks you straight to a summer internship offer.</p>
         </div>
+
         <div class="step">
           <div class="step-n">2</div>
           <h3>Summer internship</h3>
           <div class="when">Third to fourth year</div>
           <p>Ten weeks on a live desk. This is the stage that converts into a graduate offer.</p>
         </div>
+
         <div class="step">
           <div class="step-n">3</div>
           <h3>Full-time offer</h3>
           <div class="when">Final year</div>
           <p>Most analyst seats are filled from the summer class, long before the graduate round opens.</p>
         </div>
+
       </div>
+
       <p style="margin-top:2.5rem;max-width:70ch;font-size:.95rem">Applying to any of these requires knowing how to apply: the right CV format, the particularities of each process, mastery of technical questions and a network of contacts. That is what the society is for.</p>
     </div>
   </section>
 
+
+  <!-- ===== 3.5  LEARN / PREPARE / CONNECT =====================================
+       Three columns. Each bullet is one <li>...</li> line.
+       To add a bullet, copy an <li> line. To remove one, delete its line.
+  ========================================================================== -->
   <section class="band" id="offer">
     <div class="wrap">
       <div class="head"><h2>What you gain from us</h2></div>
+
       <div class="pillars">
+
         <div class="pillar">
           <h3>Learn</h3>
           <ul>
@@ -338,6 +558,7 @@ footer img{height:26px;width:auto}
             <li>Personal guidance on industries and career paths</li>
           </ul>
         </div>
+
         <div class="pillar">
           <h3>Prepare</h3>
           <ul>
@@ -347,6 +568,7 @@ footer img{height:26px;width:auto}
             <li>Guidance on grades, exchanges and course selection at CUNEF</li>
           </ul>
         </div>
+
         <div class="pillar">
           <h3>Connect</h3>
           <ul>
@@ -354,42 +576,53 @@ footer img{height:26px;width:auto}
             <li>A personalised introduction to the CUNEF alumni network</li>
           </ul>
         </div>
+
       </div>
     </div>
   </section>
 
+
+  <!-- ===== 3.6  FIRMS =========================================================
+       Each firm is one <span class="firm">Name</span>.
+       Keep them on one line with no spaces between the tags, or gaps appear
+       between the boxes. To add a firm, type another span into the row.
+  ========================================================================== -->
   <section class="band band-beige" id="network">
     <div class="wrap">
       <div class="head">
         <h2>Where our network sits</h2>
         <p>Alumni from CUNEF hold positions from analyst to managing director at leading firms in London, New York and Madrid.</p>
       </div>
+
       <div class="firm-block">
         <h3>Alumni placements</h3>
-        <div class="firms">
-          <span class="firm">Goldman Sachs</span><span class="firm">J.P. Morgan</span><span class="firm">Bank of America</span><span class="firm">Citi</span><span class="firm">Barclays</span><span class="firm">Evercore</span><span class="firm">Rothschild &amp; Co</span><span class="firm">and others</span>
-        </div>
+        <div class="firms"><span class="firm">Goldman Sachs</span><span class="firm">J.P. Morgan</span><span class="firm">Bank of America</span><span class="firm">Citi</span><span class="firm">Barclays</span><span class="firm">Evercore</span><span class="firm">Rothschild &amp; Co</span><span class="firm">and others</span></div>
       </div>
+
       <div class="firm-block">
         <h3>Speakers hosted last term</h3>
-        <div class="firms">
-          <span class="firm">Morgan Stanley</span><span class="firm">Santander</span><span class="firm">Houlihan Lokey</span><span class="firm">Banco Sabadell</span>
-        </div>
+        <div class="firms"><span class="firm">Morgan Stanley</span><span class="firm">Santander</span><span class="firm">Houlihan Lokey</span><span class="firm">Banco Sabadell</span></div>
       </div>
+
       <div class="firm-block">
         <h3>Speakers hosted previously</h3>
-        <div class="firms">
-          <span class="firm">Lazard</span><span class="firm">Macquarie</span><span class="firm">Deutsche Bank</span><span class="firm">BNP Paribas</span>
-        </div>
+        <div class="firms"><span class="firm">Lazard</span><span class="firm">Macquarie</span><span class="firm">Deutsche Bank</span><span class="firm">BNP Paribas</span></div>
       </div>
+
     </div>
   </section>
 
+
+  <!-- ===== 3.7  CONTACT BAND ==================================================
+       The heading and paragraph are here.
+       The email addresses come from PART 1, section 1.1 — to add another
+       contact, go there. The empty div below fills in automatically.
+  ========================================================================== -->
   <section class="join" id="join">
     <div class="wrap">
       <h2>Join the society</h2>
       <p>Membership is open to every CUNEF student, from first year onwards. Write to us and we will add you to the mailing list for talks, visits, workshops and application deadlines.</p>
-      <p style="margin-top:1.5rem"><a class="mail" id="mail-link" href="#">loading…</a></p>
+      <div class="contacts" id="contacts"></div>
     </div>
   </section>
 
@@ -402,16 +635,39 @@ footer img{height:26px;width:auto}
   </div>
 </footer>
 
+
 <script>
+/* ==============================================================================
+   PART 4 — MACHINERY
+   ==============================================================================
+   Builds the contact list and the resource rows from your settings in PART 1.
+   There is nothing to configure here. Do not edit this part.
+   ============================================================================ */
 (function () {
+
+  /* --- contacts --- */
+  const contactBox = document.getElementById('contacts');
+  CONTACTS.forEach(c => {
+    const wrap = document.createElement('div');
+    wrap.className = 'contact';
+
+    const role = document.createElement('div');
+    role.className = 'role';
+    role.textContent = c.role;
+
+    const link = document.createElement('a');
+    link.href = 'mailto:' + c.email;
+    link.textContent = c.email;
+
+    wrap.append(role, link);
+    contactBox.appendChild(wrap);
+  });
+
+  /* --- resources --- */
   const list = document.getElementById('resource-list');
   const chipBox = document.getElementById('chips');
   const search = document.getElementById('search');
   let activeGroup = 'All';
-
-  const mail = document.getElementById('mail-link');
-  mail.href = 'mailto:' + CONTACT_EMAIL;
-  mail.textContent = CONTACT_EMAIL;
 
   ['All', ...RESOURCES.map(g => g.group)].forEach((name, i) => {
     const b = document.createElement('button');
@@ -497,7 +753,7 @@ footer img{height:26px;width:auto}
     if (!shown) {
       const e = document.createElement('p');
       e.className = 'empty';
-      e.textContent = 'Nothing matches that search. Try a different term, or write to ' + CONTACT_EMAIL + ' and we will add it.';
+      e.textContent = 'Nothing matches that search. Try a different term, or write to ' + CONTACTS[0].email + ' and we will add it.';
       list.appendChild(e);
     }
   }
